@@ -1,10 +1,11 @@
 using System;
 
-namespace AssociationWebApp.Models
+namespace AssociationWebApp.Models.ViewModel
 {
     public class ErrorViewModel
     {
         public string RequestId { get; set; }
+        public string Message { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }

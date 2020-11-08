@@ -22,7 +22,6 @@ namespace AssociationWebApp.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "CNPJ obrigatório!")]
         [Display(Name = "CNPJ")]
-        [RegularExpression(@"/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
         [Column("cnpj")]
         [StringLength(14)]
         public string Cnpj { get; set; }

@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using AssociationWebApp.Data;
 using AssociationWebApp.Models;
 using AssociationWebApp.Services;
+using AssociationWebApp.Services.Exceptions;
+using AssociationWebApp.Models.ViewModel;
+using System.Diagnostics;
 
 namespace AssociationWebApp.Controllers
 {
@@ -33,13 +36,13 @@ namespace AssociationWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
-            
+
             var associated = await _context.Associated.FirstOrDefaultAsync(m => m.Id == id);
             if (associated == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não encontrado!" });
             }
 
             return View(associated);
@@ -72,13 +75,13 @@ namespace AssociationWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
 
             var associated = await _context.Associated.FindAsync(id);
             if (associated == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não encontrado!" });
             }
             return View(associated);
         }
@@ -92,7 +95,7 @@ namespace AssociationWebApp.Controllers
         {
             if (id != associated.Id)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificadores diferentes!" });
             }
 
             if (ModelState.IsValid)
@@ -106,7 +109,7 @@ namespace AssociationWebApp.Controllers
                 {
                     if (!AssociatedExists(associated.Id))
                     {
-                        return NotFound();
+                        return RedirectToAction(nameof(Error), new { message = "O identificador não existe!" });
                     }
                     else
                     {
@@ -123,14 +126,14 @@ namespace AssociationWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
 
             var associated = await _context.Associated
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (associated == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
 
             return View(associated);
@@ -156,6 +159,17 @@ namespace AssociationWebApp.Controllers
         {
             var result = await _associatedService.FainBayNameAsync(name, cpf);
             return View(result);
+        }
+
+        //Method error custom
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

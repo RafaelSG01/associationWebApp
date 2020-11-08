@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using AssociationWebApp.Data;
 using AssociationWebApp.Models;
 using AssociationWebApp.Services;
+using AssociationWebApp.Models.ViewModel;
+using System.Diagnostics;
 
 namespace AssociationWebApp.Controllers
 {
@@ -61,7 +63,7 @@ namespace AssociationWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
 
             var association = await _context.Association
@@ -70,7 +72,7 @@ namespace AssociationWebApp.Controllers
                 .FirstOrDefaultAsync(m => m.AssociatedId == id);
             if (association == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "O identificador não foi fornecido!" });
             }
 
             return View(association);
@@ -96,6 +98,16 @@ namespace AssociationWebApp.Controllers
         {
             var result = await _associationService.FainBayNameAsync(name, cpf);
             return View(result);
+        }
+        //Method error custom
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

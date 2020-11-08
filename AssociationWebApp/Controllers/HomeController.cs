@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AssociationWebApp.Models;
+using AssociationWebApp.Models.ViewModel;
 
 namespace AssociationWebApp.Controllers
 {

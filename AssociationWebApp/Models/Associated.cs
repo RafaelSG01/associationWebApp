@@ -22,7 +22,6 @@ namespace AssociationWebApp.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "CPF obrigatório!")]
         [Display(Name = "CPF")]
-        [RegularExpression(@"/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
         [Column("cpf")]
         [StringLength(11)]
         public string Cpf { get; set; }
