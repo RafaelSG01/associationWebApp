@@ -1,0 +1,46 @@
+﻿@model AssociationWebApp.Models.Associated
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Associado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        @foreach (var item in Model.Associations)
+        {
+            <dt>
+                @Html.DisplayNameFor(itemModel => item.CompanyId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(itemModel => item.Company.Name)
+            </dd>
+        }
+    </dl>
+</div>
+
+<div>
+    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a class="btn btn-default" asp-action="Index">Voltar</a>
+</div>

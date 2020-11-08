@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AssociationWebApp.Models.Associated>
+@{
+    ViewData["Title"] = "Pesquisa";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <form class="navbar-form navbar-left font-color-white">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input name="name" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input name="cpf" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="panel-body">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="success">
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cpf)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-default" asp-action="Index">Voltar</a>

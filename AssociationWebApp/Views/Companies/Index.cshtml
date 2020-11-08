@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AssociationWebApp.Models.Company>
+
+@{
+    ViewData["Title"] = "Empresas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-inline pull-right">
+            <li><a class="btn btn-default btn-sm" asp-action="Create">Adicionar Nova Empresa</a></li>
+            <li><a class="btn btn-success btn-sm" asp-area="" asp-controller="Associations" asp-action="Index">Associar / Desassociar</a></li>
+        </ul>
+    </div>
+</div>>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <form class="navbar-form navbar-left font-color-white" asp-action="SearchAsync">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input name="name" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="cnpj">CNPJ</label>
+                    <input name="cnpj" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cnpj)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cnpj)
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

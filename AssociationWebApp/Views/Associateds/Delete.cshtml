@@ -1,0 +1,39 @@
+﻿@model AssociationWebApp.Models.Associated
+
+@{
+    ViewData["Title"] = "Excluir Associado";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Você tem certeza que deseja excluir esse associado?</h3>
+<div>
+    <h4>Associado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a class="btn btn-default" asp-action="Index">Voltar</a>
+    </form>
+</div>
