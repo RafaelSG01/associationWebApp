@@ -10,6 +10,7 @@ using AssociationWebApp.Models;
 using AssociationWebApp.Services.Exceptions;
 using AssociationWebApp.Models.ViewModel;
 using System.Diagnostics;
+using AssociationWebApp.Services;
 
 namespace AssociationWebApp.Controllers
 {
