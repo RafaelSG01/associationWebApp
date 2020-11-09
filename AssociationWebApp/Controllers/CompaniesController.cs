@@ -64,11 +64,14 @@ namespace AssociationWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Return erro repeated CNPJ
                 bool hasCpf = await _context.Company.AnyAsync(x => x.Cnpj == company.Cnpj);
                 if (hasCpf)
                 {
                     return RedirectToAction(nameof(Error), new { message = "CNPJ informado já foi cadastrado!" });
                 }
+                //end return
+
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
