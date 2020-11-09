@@ -19,7 +19,7 @@ namespace AssociationWebApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Association>().HasKey(bc => new { bc.AssociatedId, bc.CompanyId });
+            modelBuilder.Entity<Association>().HasKey(bc => new { bc.Id });
         }
 
     }

@@ -4,14 +4,16 @@ using AssociationWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AssociationWebApp.Migrations
 {
     [DbContext(typeof(AssociationDbContext))]
-    partial class AssociationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201109172518_mtom")]
+    partial class mtom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,20 +35,14 @@ namespace AssociationWebApp.Migrations
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnName("cpf")
-                        .HasMaxLength(11)
-                        .IsUnicode(false);
+                        .HasMaxLength(11);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
-                        .HasMaxLength(200)
-                        .IsUnicode(false);
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Cpf")
-                        .IsUnique()
-                        .HasName("AK_Associated");
 
                     b.ToTable("Associated");
                 });
@@ -83,20 +79,14 @@ namespace AssociationWebApp.Migrations
                     b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasColumnName("cnpj")
-                        .HasMaxLength(14)
-                        .IsUnicode(false);
+                        .HasMaxLength(14);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
-                        .HasMaxLength(200)
-                        .IsUnicode(false);
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Cnpj")
-                        .IsUnique()
-                        .HasName("AK_Company");
 
                     b.ToTable("Company");
                 });

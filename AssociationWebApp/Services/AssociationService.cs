@@ -17,17 +17,17 @@ namespace AssociationWebApp.Services
             _context = context;
         }
 
-        public async Task<List<Association>> FainBayNameAsync(string name, string cpf)
+        public async Task<List<Association>> FainBayNameAsync(string namea, string namec)
         {
             var result = from obj in _context.Association  select obj;
-            if (!String.IsNullOrEmpty(name))
+            if (!String.IsNullOrEmpty(namea))
             {
-                result = result.Where(x => x.Associated.Name.Contains(name));
+                result = result.Where(x => x.Associated.Name.Contains(namea));
             }
 
-            if (!String.IsNullOrEmpty(cpf))
+            if (!String.IsNullOrEmpty(namec))
             {
-                result = result.Where(x => x.Associated.Cpf.Contains(cpf));
+                result = result.Where(x => x.Company.Name.Contains(namec));
             }
 
 

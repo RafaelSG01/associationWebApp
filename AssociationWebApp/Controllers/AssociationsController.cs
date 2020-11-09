@@ -10,6 +10,7 @@ using AssociationWebApp.Models;
 using AssociationWebApp.Services;
 using AssociationWebApp.Models.ViewModel;
 using System.Diagnostics;
+using AssociationWebApp.Services.Exceptions;
 
 namespace AssociationWebApp.Controllers
 {
@@ -83,10 +84,17 @@ namespace AssociationWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var association = await _context.Association.FindAsync(id);
-            _context.Association.Remove(association);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var association = await _context.Association.FindAsync(id);
+                _context.Association.Remove(association);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Identificador não encontrado!" });
+            }
         }
 
         private bool AssociationExists(int id)
@@ -94,9 +102,9 @@ namespace AssociationWebApp.Controllers
             return _context.Association.Any(e => e.AssociatedId == id);
         }
 
-        public async Task<IActionResult> SearchAsync(string name, string cpf)
+        public async Task<IActionResult> SearchAsync(string namea, string namec)
         {
-            var result = await _associationService.FainBayNameAsync(name, cpf);
+            var result = await _associationService.FainBayNameAsync(namea, namec);
             return View(result);
         }
         //Method error custom

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -42,12 +41,15 @@ namespace AssociationWebApp.Migrations
                 name: "Association",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     associatedId = table.Column<int>(nullable: false),
                     companyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Association", x => new { x.associatedId, x.companyId });
+                    table.UniqueConstraint("AK_Association_Id", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Association_Associated_associatedId",
                         column: x => x.associatedId,
@@ -66,6 +68,12 @@ namespace AssociationWebApp.Migrations
                 name: "AK_Associated",
                 table: "Associated",
                 column: "cpf",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "AK_Company",
+                table: "Company",
+                column: "cnpj",
                 unique: true);
 
             migrationBuilder.CreateIndex(

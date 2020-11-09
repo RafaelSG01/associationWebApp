@@ -8,10 +8,13 @@ namespace AssociationWebApp.Models
     public partial class Association
     {
         [Key]
+        [Column("id")]
+        public int Id { get; set; }
         [Column("associatedId")]
+        [Display(Name = "Associado")]
         public int AssociatedId { get; set; }
-        [Key]
         [Column("companyId")]
+        [Display(Name = "Empresa")]
         public int CompanyId { get; set; }
 
         [ForeignKey(nameof(AssociatedId))]

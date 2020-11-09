@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssociationWebApp.Migrations
 {
     [DbContext(typeof(AssociationDbContext))]
-    [Migration("20201107005512_initial")]
+    [Migration("20201109163838_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,11 +38,13 @@ namespace AssociationWebApp.Migrations
                         .HasMaxLength(11)
                         .IsUnicode(false);
 
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
                         .HasMaxLength(200)
                         .IsUnicode(false);
+
 
                     b.HasKey("Id");
 
@@ -61,7 +63,12 @@ namespace AssociationWebApp.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnName("companyId");
 
-                    b.HasKey("AssociatedId", "CompanyId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("AssociatedId", "CompanyId", "Id");
 
                     b.HasIndex("CompanyId");
 
@@ -81,11 +88,13 @@ namespace AssociationWebApp.Migrations
                         .HasMaxLength(14)
                         .IsUnicode(false);
 
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
                         .HasMaxLength(200)
                         .IsUnicode(false);
+
 
                     b.HasKey("Id");
 
@@ -99,12 +108,12 @@ namespace AssociationWebApp.Migrations
             modelBuilder.Entity("AssociationWebApp.Models.Association", b =>
                 {
                     b.HasOne("AssociationWebApp.Models.Associated", "Associated")
-                        .WithMany("Association")
+                        .WithMany("Associations")
                         .HasForeignKey("AssociatedId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AssociationWebApp.Models.Company", "Company")
-                        .WithMany("Association")
+                        .WithMany("Associations")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201107005512_initial.cs" />
+    <Compile Remove="Migrations\20201107005512_initial.Designer.cs" />
     <Compile Remove="Migrations\20201109132903_manytomany.cs" />
     <Compile Remove="Migrations\20201109132903_manytomany.Designer.cs" />
+    <Compile Remove="Migrations\20201109155014_mtom.cs" />
+    <Compile Remove="Migrations\20201109155014_mtom.Designer.cs" />
+    <Compile Remove="Migrations\20201109160914_newmtom.cs" />
+    <Compile Remove="Migrations\20201109160914_newmtom.Designer.cs" />
+    <Compile Remove="Migrations\20201109161300_newmtom.cs" />
+    <Compile Remove="Migrations\20201109161300_newmtom.Designer.cs" />
+    <Compile Remove="Migrations\20201109161700_initial.cs" />
+    <Compile Remove="Migrations\20201109161700_initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
