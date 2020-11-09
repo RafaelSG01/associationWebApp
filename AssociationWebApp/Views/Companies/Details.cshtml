@@ -22,12 +22,12 @@
             @Html.DisplayFor(model => model.Cnpj)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Cnpj)
+            @Html.DisplayNameFor(model => model.Associations)
         </dt>
         @foreach (var item in Model.Associations)
         {
             <dt>
-                @Html.DisplayFor(itemModel => item.Associated)
+                @Html.DisplayFor(itemModel => item.Associated.Name)
             </dt>
         }
     </dl>
