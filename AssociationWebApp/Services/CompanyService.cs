@@ -22,7 +22,7 @@ namespace AssociationWebApp.Services
             var result = from obj in _context.Company select obj;
             if (!String.IsNullOrEmpty(name))
             {
-                result = result.Where(x => x.Company.Name.Contains(name));
+                result = result.Where(x => x.Name.Contains(name));
             }
 
             if (!String.IsNullOrEmpty(cnpj))
