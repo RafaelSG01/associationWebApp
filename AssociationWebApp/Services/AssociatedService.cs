@@ -1,5 +1,6 @@
 ﻿using AssociationWebApp.Data;
 using AssociationWebApp.Models;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace AssociationWebApp.Services
         {
             _context = context;
         }
+
+        
         //Search Associeated in db and get result
         public async Task<List<Associated>> FainBayNameAsync(string name, string cpf)
         {
