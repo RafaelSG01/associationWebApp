@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssociationWebApp.Migrations
 {
     [DbContext(typeof(AssociationDbContext))]
-    [Migration("20201107005512_initial")]
-    partial class initial
+    [Migration("20201109132903_manytomany")]
+    partial class manytomany
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,12 +99,12 @@ namespace AssociationWebApp.Migrations
             modelBuilder.Entity("AssociationWebApp.Models.Association", b =>
                 {
                     b.HasOne("AssociationWebApp.Models.Associated", "Associated")
-                        .WithMany("Association")
+                        .WithMany("Associations")
                         .HasForeignKey("AssociatedId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AssociationWebApp.Models.Company", "Company")
-                        .WithMany("Association")
+                        .WithMany("Associations")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

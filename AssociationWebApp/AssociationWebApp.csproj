@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201109132903_manytomany.cs" />
+    <Compile Remove="Migrations\20201109132903_manytomany.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Associations\Details.cshtml" />
     <Content Remove="Views\Associations\Edit.cshtml" />
   </ItemGroup>

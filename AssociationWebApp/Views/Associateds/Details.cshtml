@@ -31,16 +31,13 @@
         @foreach (var item in Model.Associations)
         {
             <dt>
-                @Html.DisplayNameFor(itemModel => item.CompanyId)
+                @Html.DisplayFor(itemModel => item.Company)
             </dt>
-            <dd>
-                @Html.DisplayFor(itemModel => item.Company.Name)
-            </dd>
         }
     </dl>
 </div>
 
 <div>
-    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
-    <a class="btn btn-default" asp-action="Index">Voltar</a>
+    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> 
+    <a class="btn btn-default btn-sm" asp-action="Index">Voltar</a>
 </div>

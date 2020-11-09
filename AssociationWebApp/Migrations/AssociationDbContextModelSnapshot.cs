@@ -33,14 +33,21 @@ namespace AssociationWebApp.Migrations
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnName("cpf")
-                        .HasMaxLength(11);
+                        .HasMaxLength(11)
+                        .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .IsUnicode(false);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique()
+                        .HasName("AK_Associated");
+
 
                     b.ToTable("Associated");
                 });
@@ -70,14 +77,21 @@ namespace AssociationWebApp.Migrations
                     b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasColumnName("cnpj")
-                        .HasMaxLength(14);
+                        .HasMaxLength(14)
+                        .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .IsUnicode(false);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cnpj")
+                        .IsUnique()
+                        .HasName("AK_Company");
+
 
                     b.ToTable("Company");
                 });

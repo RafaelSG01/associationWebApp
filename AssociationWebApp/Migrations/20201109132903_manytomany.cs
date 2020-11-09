@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Data;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AssociationWebApp.Migrations
 {
-    public partial class initial : Migration
+    public partial class manytomany : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,7 +60,6 @@ namespace AssociationWebApp.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
             migrationBuilder.CreateIndex(
                 name: "AK_Associated",
                 table: "Associated",
@@ -69,9 +67,16 @@ namespace AssociationWebApp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "AK_Company",
+                table: "Company",
+                column: "cnpj",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Association_companyId",
                 table: "Association",
                 column: "companyId");
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

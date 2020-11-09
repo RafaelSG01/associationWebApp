@@ -24,9 +24,9 @@
     </div>
 </nav>
 <div class="panel-body">
-    <table class="table table-striped table-hover">
+    <table class="table">
         <thead>
-            <tr class="success">
+            <tr>
                 <th>Associado</th>
                 <th>Empresa</th>
                 <th></th>
@@ -38,11 +38,11 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Associated.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })</td>
+                <td><button class="btn btn-danger btn-sm delete" data-id="@item.AssociatedId">Apagar</button></td>
             </tr>
             }
 
         </tbody>
-        
     </table>
 </div>
+<a class="btn btn-default btn-sm" asp-action="Index">Voltar</a>
